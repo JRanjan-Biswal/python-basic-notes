@@ -79,7 +79,7 @@ print(len(a))
 # To check if a certain phrase or character is present in a string, we can use the keyword in.
 '''
 txt = "The best things in life are free!"
-print("free" in txt)  # "in" is used to check a substring in string 
+print("free" in txt)  # "in" is used to check a substring in string // prints True
 '''
 
 # Print only if "free" is present: ( IF )
@@ -139,7 +139,7 @@ print(a.split(','))  # o/p: ['  HeLlo', ' WoRld! ']
 a = 'hello'
 b = 'world'
 print(a+b)
-print(a + " " + BrokenPipeError)
+print(a + " " + b)
 '''
 
 # ------------------- FOMAT STRING -----------------------------
@@ -193,7 +193,7 @@ mylist = ["apple", "banana", "cherry"]
 print(type(mylist))   # <class 'list'> 
 '''
 
-# IMPORTANT: LIST constructor can be used to creare a list
+# IMPORTANT: LIST constructor can be used to create a list
 # e.g.:
 '''
 thislist = list(("apple", "banana", "cherry"))  # note the double round-brackets
@@ -368,7 +368,7 @@ print(thislist)      # o/p --> [50, 65, 23, 82, 100]
 '''
 thislist = ["banana", "Orange", "Kiwi", "cherry"]
 thislist.sort(key = str.lower)
-print(thislist)
+print(thislist)     # o/p --> ['banana', 'cherry', 'Kiwi', 'Orange']
 '''
 
 # Reverse Order
@@ -574,7 +574,7 @@ set1 = {"a", "b" , "c"}
 set2 = {1, 2, 3}
 
 set3 = set1.union(set2)
-print(set3)    # {1, 2, 3, 'b', 'c', 'a'}
+print(set3)    # {1, 2, 'a', 3, 'b', 'c'}
 '''
 
 
@@ -584,7 +584,7 @@ set1 = {"a", "b" , "c"}
 set2 = {1, 2, 3}
 
 set1.update(set2)
-print(set1)    # {1, 2, 3, 'b', 'c', 'a'}
+print(set1)    # {1, 2, 3, 'a', 'c', 'b'}
 '''
 
 # intersection_update() : method will keep only the items that are present in both sets.
@@ -627,14 +627,234 @@ z = x.symmetric_difference(y)
 print(z) # {'cherry', 'microsoft', 'banana', 'google'}
 '''
 
+# IMPORTANT SETS METHODS : https://www.w3schools.com/python/python_sets_methods.asp
 
 
+########################################### DICTIONARIES ###########################################
+# e.g. mydict = { "brand": "Ford", "model": "Mustang", "year": 1964 }
+# A dict is used to store value in key value pairs
+# A dictionary is a collection which is ordered*, changeable and do not allow duplicates..
+# Dictionary items are ordered, changeable, and does not allow duplicates.
+# unordered means --> items does not have defined order, you cannot refer to an item by using an index.
+# Dictionaries are changeable, meaning that we can change, add or remove items after the dictionary has been created.
+# Dictionaries cannot have two items with the same key:
+
+# -------------------- ACCESS ITEMS IN DICT -------------------
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+x = thisdict["model"]
+
+print(x)     # o/p -->  Mustang
+'''
+
+# get() : this gives us access to the item
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+x = thisdict.get("model")
+
+print(x)     # o/p -->  Mustang
+'''
+
+# keys() : returns list of keys in the dictionary
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+x = thisdict.keys()
+
+print(x)   # o/p --> dict_keys(['brand', 'model', 'year'])
+'''
+
+# values() : return list of values in the dictionary
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+x = thisdict.values()  
+
+print(x)  # o/p --> dict_values(['Ford', 'Mustang', 1964])
+'''
+
+# items() : return each item in dictionary, as tuples in list
+'''
+car = {
+"brand": "Ford",
+"model": "Mustang",
+"year": 1964
+}
+
+x = car.items()
+
+print(x)  # o/p --> dict_items([('brand', 'Ford'), ('model', 'Mustang'), ('year', 1964)])
+'''
+
+# --------------- ADD NEW ITEM TO DICT --------------------
+'''
+car = { "brand": "Ford" }
+
+car["color"] = "white"
+
+print(car) # o/p --> {'brand': 'Ford', 'color': 'white'}
+'''
+
+# -------------- UPDATE DICTIONARY -------------------------
+# update() : this will update the dictionary with the items from the given argument.
+#          : this will also be used to add the item 
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.update({"year": 2020})  # o/p --> {'brand': 'Ford', 'model': 'Mustang', 'year': 2020}
+'''
+
+# ---------------- REMOVE ITEM - DICTIONARY -----------------
+# pop() : removes item with specified key name
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.pop("model")
+
+print(thisdict)  # o/p --> { 'brand': 'Ford', 'year': 1964 }
+'''
+
+# popitem() : removes last inserted item, (in versions before 3.7, a random item is removed instead)
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.popitem()
+
+print(thisdict)  # o/p --> {'brand': 'Ford', 'model': 'Mustang'}
+'''
+
+# del() : removes item with specified key name
+#       : also deletes the dictionary completely
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+del thisdict["model"]
+
+print(thisdict)  # o/p --> {'brand': 'Ford', 'year': 1964}
+'''
+
+# clear() : empties the dictionary
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.clear()
+
+print(thisdict)  # o/p --> {}
+'''
 
 
+# -------------------- LOOPING IN DICTIONARY --------------------
+# normal for loop
+'''
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
 
+for x in thisdict:
+  print(x)
+'''
 
+# looping through value() in dict
+'''
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
 
+for x in thisdict.values():
+  print(x)
+'''
 
+# looping through keys() in dict
+'''
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+for x in thisdict.keys():
+  print(x)
+'''
+
+# looping through items() in dict
+'''
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+for x, y in thisdict.items():
+  print(x, y)
+'''
+
+# --------------------- COPY IN DICTIONARY ----------------------
+# You cannot copy a dictionary simply by typing dict2 = dict1, 
+# because: dict2 will only be a reference to dict1, 
+# and changes made in dict1 will automatically also be made in dict2.
+
+# copy() : copying a dictionary
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+mydict = thisdict.copy()
+print(mydict)
+'''
+
+# dict() : copying a dictionary
+'''
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+mydict = dict(thisdict)
+print(mydict)
+'''
+
+# IMPORTANT DICT METHODS : https://www.w3schools.com/python/python_dictionaries_methods.asp
 
 
 
@@ -679,7 +899,7 @@ print(type(y))
 '''
 a = 4
 A = "Sally"
-#A will not overwrite a 
+# A will not overwrite a 
 '''
 
 
@@ -748,11 +968,11 @@ x = "awesome"
 
 def myfunc():
   x = "fantastic"
-  print("Python is " + x)
+  print("Python is " + x)    # o/p --> Python is fantastic
 
 myfunc()
 
-print("Python is " + x) 
+print("Python is " + x)    # o/p --> Python is awesome
 '''
 
 # The global Keyword
@@ -764,8 +984,302 @@ def myfunc():
 
 myfunc()
 
-print("Python is " + x) 
+print("Python is " + x)    # o/p --> Python is fantastic
 '''
+
+
+
+############################## FUNCTIONS #############################
+
+# A function is a block of code which only runs when it is called.
+# You can pass data, known as parameters, into a function.
+# A function can return data as a result.
+
+# ------------- CREATING A FUNCITON ----------
+# In Python a function is defined using the def keyword:
+'''
+def my_function():
+  print("Hello from a function")
+'''
+
+# -------------- Calling a Function -------------
+# To call a function, use the function name followed by parenthesis:
+'''
+def my_function():
+  print("Hello from a function")
+
+my_function()
+'''
+
+# --------------- Arguments ---------------------
+# Information can be passed into functions as arguments.
+# Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+'''
+def my_function(fname):
+  print(fname + " Refsnes")
+
+my_function("Emil")
+my_function("Tobias")
+my_function("Linus")
+'''
+
+# ---------------- Parameters or Arguments ------------
+# A parameter is the variable listed inside the parentheses in the function definition.
+# eg. 
+'''
+def my_function(fname, lname):  # <--- parameter
+  print(fname + " " + lname)
+'''
+
+# An argument is the value that is sent to the function when it is called.
+'''
+my_function("Emil", "Refsnes")   # <--- arguments
+'''
+
+# --------------------- Arbitrary Arguments ( *args ) ----------------
+# If you do not know how many arguments that will be passed into your function, add a * before the parameter name in the function definition.
+'''
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "Linus")
+'''
+
+# --------------------- Keyword Arguments ---------------------------
+# You can also send arguments with the key = value syntax.
+'''
+def my_function(child3, child2, child1):
+  print("The youngest child is " + child3)
+
+my_function(child1 = "Emil", child2 = "Tobias", child3 = "Linus")
+'''
+
+# ----------------------- Arbitrary Keyword Arguments --------------------
+# If you do not know how many keyword arguments that will be passed into your function, add two asterisk: ** before the parameter name in the function definition.
+'''
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+
+my_function(fname = "Tobias", lname = "Refsnes")
+'''
+
+# ----------------------- Default Parameter Value --------------------
+# The following example shows how to use a default parameter value.
+'''
+def my_function(country = "Norway"):  # <-- If we call the function without argument, 
+  print("I am from " + country)       #     it uses the default value
+
+my_function("Sweden")
+my_function("India")
+my_function()
+my_function("Brazil")
+'''
+
+# ----------------------- The pass Statement ------------------------
+# function definitions cannot be empty, 
+# but if you for some reason have a function definition with no content, 
+# put in the pass statement to avoid getting an error.
+'''
+def myfunction():
+  pass
+'''
+
+# ------------------ VERY VERY IMPORTANT --- RECURSION ---------------
+# Python also accepts function recursion, which means a defined function can call itself.
+
+# Recursion is a common mathematical and programming concept. It means that a function calls itself. This has the benefit of meaning that you can loop through data to reach a result.
+
+# The developer should be very careful with recursion as it can be quite easy to slip into writing a function which never terminates, or one that uses excess amounts of memory or processor power. However, when written correctly recursion can be a very efficient and mathematically-elegant approach to programming.
+
+# In this example, tri_recursion() is a function that we have defined to call itself ("recurse"). We use the k variable as the data, which decrements (-1) every time we recurse. The recursion ends when the condition is not greater than 0 (i.e. when it is 0).
+
+'''
+def tri_recursion(k):
+  if(k > 0):
+    result = k + tri_recursion(k - 1)
+    print(result)
+  else:
+    result = 0
+  return result
+
+print("\n\nRecursion Example Results")
+tri_recursion(6)
+'''
+
+
+###################################### LAMBDA #################################### 
+# A lambda function is a small anonymous function.
+# A lambda function can take any number of arguments, but can only have one expression.
+# syntax: 
+# lambda arguments : expression
+
+# -------------- Add 10 to argument a, and return the result: -----------------
+'''
+x = lambda a : a + 10
+
+print(x(5))             # o/p : 15
+'''
+
+# ------------- Multiply argument a with argument b and return the result --------
+'''
+x = lambda a, b : a * b
+
+print(x(5, 6))              # o/p : 30     
+'''
+
+# ------------- Summarize argument a, b, and c and return the result ------------
+'''
+x = lambda a, b, c : a + b + c
+
+print(x(5, 6, 2))                 # o/p : 13
+'''
+
+# ------------------------- Why Use Lambda Functions? ----------------------------
+# The power of lambda is better shown when you use them as an anonymous function inside another function.
+'''
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+
+print(mydoubler(11))     # o/p : 22
+'''
+
+
+############################################## ARRAYS ################################################
+# sytax: cars = ["Ford", "Volvo", "BMW"]
+# len() : return lenth of the array
+# append() : add element to an array    # eg.: cars.append("Honda")
+
+# pop() : removes element from the array
+'''
+cars = ["Ford", "Volvo", "BMW"]
+
+cars.pop(1)
+
+print(cars)   # o/p : ['Ford', 'BMW']
+'''
+
+# remove() : method to remove an element from the array.
+'''
+cars = ["Ford", "Volvo", "BMW"]
+
+cars.remove("Volvo")
+
+print(cars)   # o/p : ['Ford', 'BMW']
+'''
+
+# methods for arrays : https://www.w3schools.com/python/python_arrays.asp
+
+
+###################################### CLASS / OBJECTS ###################################### -- OOPS
+# Python is an object oriented programming language.
+# Almost everything in Python is an object, with its properties and methods.
+# A Class is like an object constructor, or a "blueprint" for creating objects.
+
+# syntax : 
+'''
+class MyClass:
+  x = 5
+
+p1 = MyClass()
+print(p1.x)   # o/p : 5
+'''
+
+# ----------------------- Self Parameter ------------------------
+# The self parameter is a reference to the current instance of the class, and is used to access variables that belongs to the class.
+# It does not have to be named self , you can call it whatever you like, but it has to be the first parameter of any function in the class:
+
+# ----------------------------- __init__()  -------------------------
+# The example above is a classe and object in their simplest form, and are not really useful in real life applications.
+# To understand the meaning of classes we have to understand the built-in __init__() function.
+# All classes have a function called __init__(), which is always executed when the class is being initiated.
+# Note: The __init__() function is called automatically every time the class is being used to create a new object.
+
+# Use the __init__() function to assign values to object properties, or other operations that are necessary to do when the object is being created:
+'''
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+p1 = Person("John", 36)
+
+print(p1.name)   # o/p : john
+print(p1.age)    # o/p : 36
+'''
+
+# ---------------------------- __str__() -----------------------------
+# The __str__() function controls what should be returned when the class object is represented as a string.
+# If the __str__() function is not set, the string representation of the object is returned:
+'''
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+p1 = Person("John", 36)
+
+print(p1)   # o/p : <__main__.Person object at 0x0000017E1AC2DF70>
+
+
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def __str__(self):
+    return f"{self.name}({self.age})"
+
+p1 = Person("John", 36)
+
+print(p1)  # o/p : John(36)
+'''
+
+# ---------------------------- Object Methods ----------------------
+# Objects can also contain methods. Methods in objects are functions that belong to the object.
+'''
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+p1.myfunc()
+'''
+
+
+
+################################################## INHERITANCE ########################################
+# Inheritance allows us to define a class that inherits all the methods and properties from another class.
+# Parent class is the class being inherited from, also called base class.
+# Child class is the class that inherits from another class, also called derived class.
+
+# --------------------------- Creating a Parent Class -----------------------
+'''
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+#Use the Person class to create an object, and then execute the printname method:
+
+x = Person("John", "Doe")
+x.printname()
+'''
+
+
+
+
+
+
+
 
 
 exit()
