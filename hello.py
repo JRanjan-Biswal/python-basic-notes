@@ -1191,7 +1191,7 @@ print(p1.x)   # o/p : 5
 # It does not have to be named self , you can call it whatever you like, but it has to be the first parameter of any function in the class:
 
 # ----------------------------- __init__()  -------------------------
-# The example above is a classe and object in their simplest form, and are not really useful in real life applications.
+# The example above is a class and object in their simplest form, and are not really useful in real life applications.
 # To understand the meaning of classes we have to understand the built-in __init__() function.
 # All classes have a function called __init__(), which is always executed when the class is being initiated.
 # Note: The __init__() function is called automatically every time the class is being used to create a new object.
@@ -1258,8 +1258,9 @@ p1.myfunc()
 # Parent class is the class being inherited from, also called base class.
 # Child class is the class that inherits from another class, also called derived class.
 
-# --------------------------- Creating a Parent Class -----------------------
-'''
+# --------------------------- Creating a Child Class -----------------------
+''' # this is parent/base class
+
 class Person:
   def __init__(self, fname, lname):
     self.firstname = fname
@@ -1272,8 +1273,170 @@ class Person:
 
 x = Person("John", "Doe")
 x.printname()
+
+# creating a child class  --> To create a class that inherits the functionality from another class, send the parent class as a parameter when creating the child class:
+
+class Student(Person): 
+  pass
+
+x = Student('Jyoti', 'Ranjan')
+x.printname()
 '''
 
+# ------------------- using __init__() ----------------------
+# When you add the __init__() function, the child class will no longer inherit the parent's __init__() function.
+# Note: The child's __init__() function overrides the inheritance of the parent's __init__() function.
+# To keep the inheritance of the parent's __init__() function, add a call to the parent's __init__() function:
+'''
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+
+class Student(Person):
+  def __init__(self, fname, lname):
+    Person.__init__(self, fname, lname)
+'''
+
+# ------------------------------- super() --------------------------------------
+# Python also has a super() function that will make the child class inherit all the methods and properties from its parent:
+'''
+class Student(Person):
+  def __init__(self, fname, lname):
+    super().__init__(fname, lname)
+'''
+
+# ------------------------------- Adding Properties to Student (child class) ------------------
+'''
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+
+class Student(Person):
+  def __init__(self, fname, lname):
+      super().__init__(fname, lname)    # this inherits all methods of parent to child class
+      self.graduationyear = 2019       # here we are adding a new property to Student class
+'''
+
+# -------------------------- Adding Method to Student/Child class ---------------------------
+'''
+class Person:
+  def __init__(self, fname, lname):
+    self.firstname = fname
+    self.lastname = lname
+
+  def printname(self):
+    print(self.firstname, self.lastname)
+
+    
+class Student(Person):
+  def __init__(self, fname, lname, year):
+    super().__init__(fname, lname)
+    self.graduationyear = year
+
+  def welcome(self):
+    print("Welcome", self.firstname, self.lastname, "to the class of", self.graduationyear)
+''' 
+
+
+############################################# PYTHON ITERATORS #############################################
+# An iterator is an object that contains a countable number of values.
+# An iterator is an object that can be iterated upon, meaning that you can traverse through all the values.
+# Technically, in Python, an iterator is an object which implements the iterator protocol, which consist of the methods __iter__() and __next__().  
+
+# ------------------------------- Iterator vs Iterable ------------------------------
+# Lists, tuples, dictionaries, and sets are all iterable objects. They are iterable containers which you can get an iterator from.
+# All these objects have a iter() method which is used to get an iterator:
+'''
+mytuple = ("apple", "banana", "cherry")
+myit = iter(mytuple)
+
+print(next(myit))       # apple
+print(next(myit))       # banana
+print(next(myit))       # cherry
+'''
+
+# ------------------------------- Strings are Iterable --------------------------------
+# Strings are also iterable objects, containing a sequence of characters:
+'''
+mystr = "banana"
+myit = iter(mystr)
+
+print(next(myit))       # b
+print(next(myit))       # a
+print(next(myit))       # n
+print(next(myit))       # a
+print(next(myit))       # n
+print(next(myit))       # a
+'''
+
+# -------------------------------- Looping through Iterator ----------------------------
+'''
+mytuple = ("apple", "banana", "cherry")
+
+for x in mytuple:
+  print(x)
+'''
+
+# --------------------------------- CREATE AN ITERATOR ----------------------------------
+# To create an object/class as an iterator you have to implement the methods __iter__() and __next__() to your object.
+# All classes have a function called __init__(), which allows us to do some initializing when the object is being created.
+# The __iter__() method acts similar, we can do operations (initializing etc.), but must always return the iterator object itself.
+# The __next__() method also allows you to do operations, and must return the next item in the sequence.
+'''
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    x = self.a
+    self.a += 1
+    return x
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+print(next(myiter))     # 1
+print(next(myiter))     # 2
+print(next(myiter))     # 3
+print(next(myiter))     # 4
+print(next(myiter))     # 5
+'''
+
+# ------------------------------ STOP ITERATION -------------------------------
+# To prevent the iteration from going on forever, we can use the StopIteration statement.
+# In the __next__() method, we can add a terminating condition to raise an error if the iteration is done a specified number of times:
+'''
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    if self.a <= 20:
+      x = self.a
+      self.a += 1
+      return x
+    else:
+      raise StopIteration
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+for x in myiter:
+  print(x)
+
+'''
 
 
 
