@@ -1439,6 +1439,283 @@ for x in myiter:
 '''
 
 
+############################################# PYTHON POLYMORPHISM #####################################
+# The word "polymorphism" means "many forms", and in programming it refers to methods/functions/operators with the same name that can be executed on many objects or classes.
+# An example of a Python function that can be used on different objects is the len() function.
+# Polymorphism is often used in Class methods, where we can have multiple classes with the same method name.
+
+# -------------------------------- CLASS POLYMORPHISM -----------------------------------
+# the below class car, boat, plane --> all have move() method in common
+'''
+class Car:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Drive!")
+
+class Boat:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Sail!")
+
+class Plane:
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+
+  def move(self):
+    print("Fly!")
+
+car1 = Car("Ford", "Mustang")       #Create a Car class
+boat1 = Boat("Ibiza", "Touring 20") #Create a Boat class
+plane1 = Plane("Boeing", "747")     #Create a Plane class
+
+for x in (car1, boat1, plane1):
+  x.move()
+'''
+
+
+################################################## PTYHON SCOPE ######################################
+# A variable is only available from inside the region it is created. This is called scope.
+
+# ------------------------------------ LOCAL SCOPE ---------------------------------
+# A variable created inside a function belongs to the local scope of that function, and can only be used inside that function.
+# A variable created inside a function is available inside that function:
+'''
+def myfunc():
+  x = 300
+  print(x)
+
+myfunc()
+'''
+
+# ------------------------------------- GLOBAL SCOPE ---------------------------------
+# A variable created in the main body of the Python code is a global variable and belongs to the global scope.
+# Global variables are available from within any scope, global and local.
+'''
+x = 300
+
+def myfunc():
+  print(x)
+
+myfunc()
+
+print(x)
+'''
+
+# ------------------------------------- NAMING VARIABLE ----------------------------------
+# If you operate with the same variable name inside and outside of a function, Python will treat them as two separate variables, one available in the global scope (outside the function) and one available in the local scope (inside the function):
+'''
+x = 300
+
+def myfunc():
+  x = 200
+  print(x)
+
+myfunc()
+
+print(x)
+'''
+
+# ------------------------------------- GLOBAL KEYBOARD -----------------------------------
+# If you need to create a global variable, but are stuck in the local scope, you can use the global keyword.
+# The global keyword makes the variable global.
+'''
+def myfunc():
+  global x
+  x = 300
+
+myfunc()
+
+print(x)
+'''
+
+
+################################################### PYTHON MODULES #########################################
+# Consider a module to be the same as a code library.
+# A file containing a set of functions you want to include in your application.
+
+# ---------------------------- CREATING A MODULE ---------------------------
+# To create a module just save the code you want in a file with the file extension .py:
+# Save this code in a file named mymodule.py
+'''
+def greeting(name):
+  print("Hello, " + name)
+'''
+
+# ---------------------------- USE A MODULE --------------------------------
+# Now we can use the module we just created, by using the import statement:
+'''
+import mymodule
+
+mymodule.greeting("Jonathan")
+'''
+
+# -------------------------- RE-NAMING A MODULE -----------------------------
+# We can create an alias when you import a module, by using the as keyword:
+'''
+import mymodule as mx
+
+a = mx.person1["age"]
+print(a)
+'''
+# ---------------------------- dir() ---------------------------------------
+# There is a built-in function to list all the function names (or variable names) in a module. The dir() function:
+'''
+import platform
+
+x = dir(platform)
+print(x)
+'''
+# ----------------------------- Import FROM Module --------------------------
+# You can choose to import only parts from a module, by using the from keyword.
+'''
+from mymodule import person1
+
+print (person1["age"])
+'''
+
+
+########################################### TRY - EXCEPT ######################################
+# The try block lets you test a block of code for errors.
+# The except block lets you handle the error.
+# The else block lets you execute code when there is no error.
+# The finally block lets you execute code, regardless of the result of the try- and except blocks.
+
+# --------------------------- EXCEPTION HANDLING -------------------------
+# When an error occurs, or exception as we call it, Python will normally stop and generate an error message.
+# These exceptions can be handled using the try statement:
+'''
+try:
+  print(x)      # the try block will generate an exception since x is not defined 
+except:
+  print("An exception occurred")
+'''
+
+# --------------------------- MANY EXCEPTIONS ----------------------------
+'''
+try:
+  print(x)
+except NameError:         # if try block raises NameError then this message is printed
+  print("Variable x is not defined")  
+except:
+  print("Something else went wrong")
+'''
+
+# -------------------------- ELSE -----------------------------------------
+# You can use the else keyword to define a block of code to be executed if no errors were raised:
+'''
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")
+'''
+
+# -------------------------- FINALLY ---------------------------------------
+# The finally block, if specified, will be executed regardless if the try block raises an error or not.
+'''
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
+'''
+
+# --------------------------- RAISE AN EXCEPTION ----------------------------
+# As a Python developer you can choose to throw an exception if a condition occurs.
+# To throw (or raise) an exception, use the raise keyword.
+'''
+x = -1
+
+if x < 0:
+  raise Exception("Sorry, no numbers below zero")
+'''
+
+
+################################################# USER INPUT ###############################################
+# Python 3.6 uses the input() method.
+# Python 2.7 uses the raw_input() method.
+'''
+username = input("Enter username:")
+print("Username is: " + username)
+'''
+
+
+################################################ PYTHON STRING FORMATTING #################################
+# The format() method allows you to format selected parts of a string.
+# To control such values, add placeholders (curly brackets {}) in the text, and run the values through the format() method:
+'''
+price = 49
+txt = "The price is {} dollars"
+print(txt.format(price))
+'''
+
+# --------------------------- MULTIPLE VALUES -------------------------------
+'''
+quantity = 3
+itemno = 567
+price = 49
+myorder = "I want {} pieces of item number {} for {:.2f} dollars."
+print(myorder.format(quantity, itemno, price))
+'''
+
+# --------------------------- INDEX NUMBERS --------------------------------
+# You can use index numbers (a number inside the curly brackets {0}) to be sure the values are placed in the correct placeholders:
+'''
+quantity = 3
+itemno = 567
+price = 49
+myorder = "I want {0} pieces of item number {1} for {2:.2f} dollars."
+print(myorder.format(quantity, itemno, price))
+'''
+# ------
+'''
+age = 36
+name = "John"
+txt = "His name is {1}. {1} is {0} years old."
+print(txt.format(age, name))
+'''
+
+# --------------------------- NAMED INDEXES --------------------------------
+# You can also use named indexes by entering a name inside the curly brackets {carname}, but then you must use names when you pass the parameter values txt.format(carname = "Ford"):
+'''
+myorder = "I have a {carname}, it is a {model}."
+print(myorder.format(carname = "Ford", model = "Mustang"))
+'''
+
+
+################################################### FILE HANDLING ###########################################
+
+# The key function for working with files in Python is the open() function.
+# The open() function takes two parameters; filename, and mode.
+
+# There are four different methods (modes) for opening a file:---
+#
+#    > "r" - Read - Default value. Opens a file for reading, error if the file does not exist
+#    > "a" - Append - Opens a file for appending, creates the file if it does not exist
+#    > "w" - Write - Opens a file for writing, creates the file if it does not exist
+#    > "x" - Create - Creates the specified file, returns an error if the file exists
+
+# In addition you can specify if the file should be handled as binary or text mode : --
+#
+#    > "t" - Text - Default value. Text mode
+#    > "b" - Binary - Binary mode (e.g. images)
+
+'''
+f = open("demofile.txt", "rt")
+'''
+
+
+
+
 
 
 
