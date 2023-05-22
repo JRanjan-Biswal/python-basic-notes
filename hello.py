@@ -1713,8 +1713,101 @@ print(myorder.format(carname = "Ford", model = "Mustang"))
 f = open("demofile.txt", "rt")
 '''
 
+# ------------------------------- OPEN FILES -------------------------------
+# first open a file using - open() method
+# then use read() to read the files content
+'''
+f = open("demofile.txt", "r")
+print(f.read())
+'''
+
+# ------------------------------- READING PARTS OF FILES -------------------
+# reading a given number of characters from a file.
+'''
+f = open("demofile.txt", "r")
+print(f.read(5))     # first five characters
+'''
+
+# ------------------------------ READ LINES --------------------------------
+'''
+f = open("demofile.txt", "r")
+print(f.readline())
+'''
+
+# ----------------------------- READ DIFFERENT LINES -----------------------
+'''
+f = open("demofile.txt", "r")
+print(f.readline())
+print(f.readline())
+'''
+
+# ----------------------------- READING FILE LINE BY LINE -----------------
+# Loop through the file line by line
+'''
+f = open("demofile.txt", "r")
+for x in f:
+  print(x)
+'''
+
+# ---------------------------- CLOSE FILES --------------------------------
+# It is a good practice to always close the file when you are done with it.
+'''
+f = open("demofile.txt", "r")
+print(f.readline())
+f.close()
+'''
 
 
+# --------------------------- WRITING TO AN EXISTING FILE ------------------
+# To write to an existing file, you must add a parameter to the open() function:
+#    > "a" - Append - will append to the end of the file
+#    > "w" - Write - will overwrite any existing content
+#    > "x" - Create - will create a file, returns an error if the file exist
+'''
+f = open("demofile2.txt", "a")     # appending to the end of the file
+f.write("Now the file has more content!")
+f.close()
+
+#open and read the file after the appending:
+f = open("demofile2.txt", "r")
+print(f.read())
+'''
+
+# --------------------------- OVERWRITING THE CONTENT -----------------------
+'''
+f = open("demofile3.txt", "w")     # overwriting the file
+f.write("Woops! I have deleted the content!")
+f.close()
+
+#open and read the file after the overwriting:
+f = open("demofile3.txt", "r")
+print(f.read())
+'''
+
+# --------------------------- DELETING A FILE ------------------------------
+# To delete a file, you must import the OS module, and run its os.remove() function:
+# import os
+'''
+import os
+os.remove("demofile.txt")
+'''
+
+# -------------------------- CHECK IF FILE EXIST THEN DELETE ---------------
+# To avoid getting an error, you might want to check if the file exists before you try to delete it
+'''
+import os
+if os.path.exists("demofile.txt"):
+  os.remove("demofile.txt")
+else:
+  print("The file does not exist")
+'''
+
+# -------------------------- DELETE FOLDER ----------------------------------
+# To delete an entire folder, use the os.rmdir() method
+'''
+import os
+os.rmdir("myfolder")
+'''
 
 
 
